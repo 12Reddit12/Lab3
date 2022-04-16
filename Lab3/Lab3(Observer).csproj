@@ -46,6 +46,7 @@
     <Compile Include="BLL\RPG.cs" />
     <Compile Include="BLL\Computer.cs" />
     <Compile Include="BLL\IGame.cs" />
+    <Compile Include="Event.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="BLL\Player.cs" />
     <Compile Include="Program.cs" />
