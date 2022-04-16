@@ -43,6 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions.cs" />
+    <Compile Include="BLL\AbstractDev.cs" />
+    <Compile Include="BLL\Adventures.cs" />
+    <Compile Include="BLL\Computer.cs" />
+    <Compile Include="BLL\Factory.cs" />
+    <Compile Include="BLL\Game.cs" />
+    <Compile Include="BLL\Player.cs" />
+    <Compile Include="BLL\RPG.cs" />
+    <Compile Include="BLL\Strategy.cs" />
+    <Compile Include="BLL\Client.cs" />
+    <Compile Include="DAL\Serialize.cs" />
+    <Compile Include="Event.cs" />
+    <Compile Include="Menu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

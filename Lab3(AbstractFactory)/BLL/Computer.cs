@@ -9,12 +9,9 @@ using Lab3;
 
 namespace BLL
 {
-    abstract class AbstractComputer
-    {
-        public abstract void Deliver();
-    }
+
     [Serializable]
-    class Computer : AbstractComputer
+    class Computer
     {
 
         public double comp_Processor_Hertz { get; set; }
@@ -25,14 +22,12 @@ namespace BLL
         public bool comp_Browser { get; set; }
         public bool comp_Internet { get; set; }
 
-        private List<IGame> installed = new List<IGame>();
-
-
-        private GameDev publisher;
+        private List<Game> installed = new List<Game>();
 
 
 
-        public Computer(GameDev publisher, double comp_Processor_Hertz, double comp_Ram_Count, double comp_Video_Ram_Count, double comp_HDD_Space,
+
+        public Computer(double comp_Processor_Hertz, double comp_Ram_Count, double comp_Video_Ram_Count, double comp_HDD_Space,
              bool comp_Browser, bool comp_Internet)
         {
             this.comp_Processor_Hertz = comp_Processor_Hertz;
@@ -41,20 +36,15 @@ namespace BLL
             this.comp_HDD_Space = comp_HDD_Space;
             this.comp_Browser = comp_Browser;
             this.comp_Internet = comp_Internet;
-            publisher = new GameDev();
-            this.publisher = publisher;
 
             Actions.GamesAdd(this);
 
         }
-        public List<IGame> GetInstalled(Computer c)
+        public List<Game> GetInstalled(Computer c)
         {
             return c.installed;
         }
 
-        public override void Deliver()
-        {
-        }
     }
 
 }
