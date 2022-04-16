@@ -10,6 +10,8 @@ namespace Lab3
     class Menu
     {
         Player player = new Player();
+        Actions actions = new Actions();
+        GameDev dev = new GameDev();
 
         public void Show_Menu()
         {
@@ -22,7 +24,7 @@ namespace Lab3
             Console.WriteLine("Выбери компьютер:");
 
             int i = 0;
-            foreach (var item in player.players_computers)
+            foreach (var item in player.GetComputers())
             {
                 Console.WriteLine($"{i++} - Процессор: {item.comp_Processor_Hertz} Ггц ; HDD: {item.comp_HDD_Space}; RAM: {item.comp_Ram_Count} GB; VIDEO: {item.comp_Video_Ram_Count} GB RAM");
             }
@@ -31,7 +33,7 @@ namespace Lab3
             try
             {
                 int input = Convert.ToInt32(str);
-                var comp = player.players_computers.ElementAt(input);
+                var comp = player.GetComputers().ElementAt(input);
 
                 while (true)
                 {
@@ -48,7 +50,7 @@ namespace Lab3
                     {
                         case "1":
 
-                            if (comp.Install_Game(comp.downloaded.ElementAt(ChooseGameInstalling(comp)), comp) == true)
+                            if (actions.Install_Game(dev.Games.ElementAt(ChooseGameInstalling(comp)), comp) == true)
                             {
                                 Thread.Sleep(2000);
 
@@ -56,13 +58,13 @@ namespace Lab3
 
                             break;
                         case "2":
-                            if (comp.installed.Count == 0)
+                            if (comp.GetInstalled(comp).Count == 0)
                             {
                                 Console.WriteLine("Установите игры!");
                                 Thread.Sleep(2000);
                                 break;
                             }
-                            if (comp.Uninstall_Game(comp.installed.ElementAt(ChooseGameDelete(comp)), comp) == false)
+                            if (actions.Uninstall_Game(comp.GetInstalled(comp).ElementAt(ChooseGameDelete(comp)), comp) == false)
                             {
                                 Thread.Sleep(2000);
                                 Console.WriteLine("RPG нельзя удалить!");
@@ -70,7 +72,7 @@ namespace Lab3
                             break;
 
                         case "3":
-                            if (comp.installed.Count == 0)
+                            if (comp.GetInstalled(comp).Count == 0)
                             {
                                 Console.WriteLine("Установите игры!");
                                 Thread.Sleep(2000);
@@ -78,7 +80,7 @@ namespace Lab3
                             }
                             else
                             {
-                                Run(comp).Play();
+                                actions.Play_Game(Run(comp));
                             }
                             break;
 
@@ -100,7 +102,7 @@ namespace Lab3
         {
             Console.WriteLine("Какую игру запустить?");
             int i = 0;
-            foreach (var item in comp.installed)
+            foreach (var item in comp.GetInstalled(comp))
             {
                 Console.WriteLine($"{i++} - Название: " + item.Name);
             }
@@ -111,7 +113,7 @@ namespace Lab3
                     string game = Console.ReadLine();
                     int i_game = Int32.Parse(game);
 
-                    var selected_game = comp.installed.ElementAt(i_game);
+                    var selected_game = comp.GetInstalled(comp).ElementAt(i_game);
                     return selected_game;
                 }
                 catch (FormatException)
@@ -129,7 +131,7 @@ namespace Lab3
         {
             Console.WriteLine("Какую игру установить ?");
             int i = 0;
-            foreach (var item in comp.downloaded)
+            foreach (var item in dev.Games)
             {
                 Console.WriteLine($"{i++} - Название: " + item.Name);
             }
@@ -144,7 +146,7 @@ namespace Lab3
         {
             Console.WriteLine("Какую игру удалить ?");
             int i = 0;
-            foreach (var item in comp.installed)
+            foreach (var item in comp.GetInstalled(comp))
             {
                 Console.WriteLine($"{i++} - Название: " + item.Name);
             }

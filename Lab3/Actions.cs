@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 using BLL;
 namespace Lab3
 {
-    class Action
+    class Actions
     {
         Event actions = new Event();
-
-
 
         public static bool GamesAdd(Computer c)
         {
@@ -27,7 +25,6 @@ namespace Lab3
             }
 
         }
-
 
         public bool Uninstall_Game(IGame game, Computer comp)
         {
@@ -82,7 +79,6 @@ namespace Lab3
             }
 
         }
-
         public bool Play_Game(IGame game)
         {
             actions.StartEvent();
