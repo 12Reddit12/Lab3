@@ -71,6 +71,12 @@ namespace BLL
         {
         }
 
+        public List<IGame> GetInstalled(Computer comp)
+        {
+            return comp.installed;
+        }
+
+
         public bool Install_Game(IGame game, Computer comp)
         {
             if (comp.installed.Any(o => game.Name == o.Name))
